@@ -1,8 +1,11 @@
 # Atividade Ponderada: Modelagem de Regras de Decisão
 
 **Aluno:** Matheus Henrique Scapolan Silva
+
 **Curso:** Sistemas de Informação, INTELI
+
 **Módulo:** Módulo 7, Sistemas de Gestão e Governança Empresarial
+
 **Frente responsável:** Controladoria (CO), Grupo 2 do projeto, função Apoiar a tomada de decisão
 
 ---
@@ -18,13 +21,13 @@
 7. [Verificação de completude e ausência de conflito](#7-verificação-de-completude-e-ausência-de-conflito)
 8. [Síntese e conexão com o projeto](#8-síntese-e-conexão-com-o-projeto)
 9. [Referências](#9-referências)
-10. [Anexo — Ficha do Catálogo de Regras (planilha)](#anexo--ficha-do-catálogo-de-regras-planilha)
+10. [Anexo - Ficha do Catálogo de Regras (planilha)](#anexo--ficha-do-catálogo-de-regras-planilha)
 
 ---
 
 ## 1. Processo selecionado e justificativa
 
-Dentro do grupo de Controladoria (CO), cada integrante ficou responsável por um processo macro diferente. O processo que peguei foi **Apoiar a tomada de decisão**, que tem como objetivo dar informação para a gestão decidir. Esse processo aparece exemplificado por cinco tipos de decisão: reajustar preços, renegociar fornecedores, revisar descontos comerciais, priorizar produtos mais rentáveis e reduzir custos logísticos. É esse processo, e não a Controladoria inteira, que uso como base para as cinco regras deste catálogo.
+Dentro do grupo de Controladoria (CO) - do qual eu faço parte -, cada integrante ficou responsável por um processo macro diferente. O processo que peguei foi **Apoiar a tomada de decisão**, que tem como objetivo dar informação para a gestão decidir. Esse processo aparece exemplificado por cinco tipos de decisão: reajustar preços, renegociar fornecedores, revisar descontos comerciais, priorizar produtos mais rentáveis e reduzir custos logísticos. É esse processo, e não a Controladoria inteira, que uso como base para as cinco regras deste catálogo.
 
 Essa escolha também atende ao que o roteiro pede, que é selecionar um processo do caso do parceiro que envolva aprovação ou classificação. As regras que criei classificam algo, um material, um cliente ou um centro de custo, comparando um valor apurado com um limite de referência. A tabela abaixo mostra qual regra cobre qual exemplo de decisão.
 
@@ -121,7 +124,7 @@ Das cinco regras, quatro são regras de ação e uma é derivação. Nenhuma del
 
 Escolhi modelar a RN-04, priorizar produtos mais rentáveis, porque é a única regra que depende de dois critérios ao mesmo tempo. Isso faz dela a mais interessante para uma tabela de decisão com ramificação de verdade. A notação DMN, *Decision Model and Notation*, da OMG, organiza o modelo em duas partes: o diagrama de requisitos de decisão (DRD), que mostra quais decisões existem e de onde vêm os dados, e a tabela de decisão, que mostra o resultado de cada combinação de entrada.
 
-Para priorizar um material, preciso saber duas coisas: se a margem dele é alta ou baixa, e se o volume vendido é alto ou baixo. Por isso, criei duas decisões auxiliares antes da decisão final: uma classifica o nível de margem, a outra classifica o nível de volume. A decisão final, **Priorizar material para alocação comercial**, só combina esses dois resultados. Assim, cada tabela fica pequena e fácil de conferir, a tabela final tem só quatro linhas, mesmo dependendo de dois critérios. Essa forma de dividir a decisão em partes menores segue a recomendação de Taylor (2016). No diagrama, a fonte de conhecimento, a política de priorização e metas de volume da NovaTech, aparece ligada às duas decisões auxiliares e à decisão final pelas setas tracejadas.
+Para priorizar um material, preciso saber duas coisas que são se a margem dele é alta ou baixa, e se o volume vendido é alto ou baixo. Por isso, criei duas decisões auxiliares antes da decisão final, sendo que uma classifica o nível de margem, a outra classifica o nível de volume. A decisão final, **Priorizar material para alocação comercial**, só combina esses dois resultados. Assim, cada tabela fica pequena e fácil de conferir, a tabela final tem só quatro linhas, mesmo dependendo de dois critérios. Essa forma de dividir a decisão em partes menores segue a recomendação de Taylor (2016). No diagrama, a fonte de conhecimento, a política de priorização e metas de volume da NovaTech, aparece ligada às duas decisões auxiliares e à decisão final pelas setas tracejadas.
 
 ### Diagrama de Requisitos de Decisão (DRD)
 
@@ -165,10 +168,6 @@ flowchart BT
 
 **Figura 1.** Diagrama de requisitos de decisão (DRD) da priorização comercial de materiais (RN-04).
 
-> O bloco acima é o código-fonte do diagrama, em sintaxe Mermaid; ele é renderizado automaticamente por visualizadores de Markdown compatíveis, como GitHub, GitLab, Obsidian e a extensão Markdown Preview do VS Code. Como garantia, a mesma figura também está reproduzida como imagem estática logo abaixo.
-
-![Diagrama de requisitos de decisão da priorização comercial de materiais (RN-04)](./diagrama_drd_rn04.png)
-
 **Legenda:**
 
 | Elemento | Forma | Significado |
@@ -187,7 +186,7 @@ A primeira decisão auxiliar classifica o nível de margem do material. A tabela
 
 Nas tabelas a seguir, sigo o mesmo layout de uma ferramenta DMN como o [demo.bpmn.io/dmn](https://demo.bpmn.io/dmn/new): a primeira linha traz o código da **política de acionamento** (Hit Policy) no canto, seguido das colunas de entrada (**Input**) e saída (**Output**); as demais linhas são as regras da tabela, com os valores escritos em notação FEEL (*Friendly Enough Expression Language*), a linguagem de expressão usada dentro das células do DMN.
 
-### Tabela 1 — Decisão: `Classificar nível de margem do material`
+### Tabela 1 - Decisão: `Classificar nível de margem do material`
 
 **Política de acionamento: U (Única)**
 
@@ -198,7 +197,7 @@ Nas tabelas a seguir, sigo o mesmo layout de uma ferramenta DMN como o [demo.bpm
 
 *Em linguagem natural: se a margem de contribuição percentual do material for inferior a 25%, o nível de margem é Baixa; se for 25% ou mais, o nível de margem é Alta.*
 
-### Tabela 2 — Decisão: `Classificar nível de volume do material`
+### Tabela 2 - Decisão: `Classificar nível de volume do material`
 
 A segunda decisão auxiliar classifica o nível de volume vendido no período. A tabela 2 também usa política única.
 
@@ -211,7 +210,7 @@ A segunda decisão auxiliar classifica o nível de volume vendido no período. A
 
 *Em linguagem natural: se a quantidade vendida no período for inferior a 50 unidades, o nível de volume é Baixo; se for 50 unidades ou mais, o nível de volume é Alto.*
 
-### Tabela 3 — Decisão final: `Priorizar material para alocação comercial` (RN-04)
+### Tabela 3 - Decisão final: `Priorizar material para alocação comercial` (RN-04)
 
 A decisão final junta os dois resultados anteriores numa matriz de priorização comercial, também com política única. A última coluna mostra qual regra do catálogo cada linha representa.
 
@@ -230,11 +229,11 @@ A decisão final junta os dois resultados anteriores numa matriz de priorizaçã
 
 A tabela 1 divide a margem de contribuição percentual em duas faixas que não se sobrepõem, com o limite em 25%, incluído na faixa alta. Aqui uso a margem bruta, receita menos custo médio, como aproximação da margem de contribuição, porque o TAPI só traz preço de venda e custo médio por material, não traz o detalhe de impostos e outros custos por unidade vendida. A margem de contribuição completa só dá para calcular quando o modelo for usado em pedidos reais, com o detalhe fiscal de cada venda.
 
-Testei essa fronteira com os três materiais do TAPI. O Notebook NovaBook, preço R$ 4.200,00, custo R$ 3.150,00, tem margem bruta de exatamente 25%, cai bem no limite entre as duas faixas, e como o limite é incluído na faixa alta, ele entra como nível de margem alto. O Monitor NovaView, R$ 980,00 e R$ 690,00, e o Teclado NovaKey, R$ 320,00 e R$ 190,00, têm margens de cerca de 29,6% e 40,6%, também ficam na faixa alta. Ou seja, os três materiais do TAPI ficam acima do piso de 25%. Isso é um achado interessante: com esse limite, a margem não diferencia os três materiais entre si, e quem decide a prioridade comercial de verdade é o nível de volume.
+Testei essa fronteira com os três materiais do TAPI. O Notebook NovaBook, preço R$ 4.200,00, custo R$ 3.150,00, tem margem bruta de exatamente 25%, cai bem no limite entre as duas faixas, e como o limite é incluído na faixa alta, ele entra como nível de margem alto. O Monitor NovaView, R$ 980,00 e R$ 690,00, e o Teclado NovaKey, R$ 320,00 e R$ 190,00, têm margens de cerca de 29,6% e 40,6%, também ficam na faixa alta. Ou seja, os três materiais do TAPI ficam acima do piso de 25%. Isso é um achado interessante, uma vez que com esse limite, a margem não diferencia os três materiais entre si, e quem decide a prioridade comercial de verdade é o nível de volume.
 
 A tabela 2 divide a quantidade vendida no período em duas faixas, com limite em 50 unidades. O TAPI não define um volume de referência, então usei esse número como parâmetro de trabalho; ele precisaria ser validado com a área comercial antes de usar o modelo fora deste exercício.
 
-A tabela 3 combina os dois resultados em quatro linhas, cobrindo as quatro combinações possíveis, 2 níveis de margem vezes 2 níveis de volume. Por isso ela é completa e sem conflito: cada linha é uma combinação diferente, e nenhuma combinação de entrada cai em duas linhas ao mesmo tempo.
+A tabela 3 combina os dois resultados em quatro linhas, cobrindo as quatro combinações possíveis, 2 níveis de margem vezes 2 níveis de volume. Por isso ela é completa e sem conflito, visto que cada linha é uma combinação diferente, e nenhuma combinação de entrada cai em duas linhas ao mesmo tempo.
 
 ---
 
@@ -242,7 +241,7 @@ A tabela 3 combina os dois resultados em quatro linhas, cobrindo as quatro combi
 
 As cinco regras cobrem exatamente as cinco decisões do processo Apoiar a tomada de decisão: RN-01 ajuda a reajustar preços, RN-02 ajuda a renegociar fornecedores, RN-03 ajuda a revisar descontos, RN-04 ajuda a priorizar produtos mais rentáveis, e RN-05 ajuda a reduzir custos logísticos.
 
-Nenhuma dessas regras cria dado novo no sistema, todas usam dados que já existem em outras áreas. RN-01 e RN-03 usam preço e desconto, que são de Vendas (SD). RN-02 e RN-05 usam custo de compra e custo de expedição, acompanhados por Compras (MM). RN-04 usa receita e volume, também de Vendas. O papel da Controladoria aqui é comparar esses dados com um parâmetro de referência ao longo do tempo e avisar a gestão. É exatamente isso que significa apoiar a tomada de decisão: dar a informação, sem tomar a decisão no lugar de quem precisa decidir.
+Nenhuma dessas regras cria dado novo no sistema, todas usam dados que já existem em outras áreas. RN-01 e RN-03 usam preço e desconto, que são de Vendas (SD). RN-02 e RN-05 usam custo de compra e custo de expedição, acompanhados por Compras (MM). RN-04 usa receita e volume, também de Vendas. O papel da Controladoria aqui é comparar esses dados com um parâmetro de referência ao longo do tempo e avisar a gestão. É exatamente isso que significa apoiar a tomada de decisão, que é dar a informação, sem tomar a decisão no lugar de quem precisa decidir.
 
 ---
 
@@ -254,9 +253,9 @@ Nenhuma dessas regras cria dado novo no sistema, todas usam dados que já existe
 
 ---
 
-## Anexo — Ficha do Catálogo de Regras (planilha)
+## Anexo - Ficha do Catálogo de Regras (planilha)
 
-Esta seção reproduz, na íntegra, o conteúdo da planilha *Planilha_com_Vocabulário__Regras_e_Tabelas_de_Decisão.xlsx*, entregue junto com este documento. A planilha organiza o mesmo material das seções 1 a 7 em formato de ficha de catálogo, com dois campos que não aparecem explicitamente no corpo do texto acima: **processo afetado** e **vigência** de cada regra.
+Esta seção reproduz, na íntegra, o conteúdo da planilha *Planilha_com_Vocabulário__Regras_e_Tabelas_de_Decisão.xlsx*, entregue junto com esta documentação na raíz do repositório do projeto. A planilha organiza o mesmo material das seções 1 a 7 em formato de ficha de catálogo, com dois campos que não aparecem explicitamente no corpo do texto acima: **processo afetado** e **vigência** de cada regra.
 
 ### A.1 Vocabulário controlado
 
@@ -389,5 +388,3 @@ Esta seção reproduz, na íntegra, o conteúdo da planilha *Planilha_com_Vocabu
 Tabela 1: limite em 25% (incluído na faixa Alta). Aqui uso a margem bruta do material (receita menos custo médio) como aproximação da margem de contribuição, porque o TAPI só traz preço de venda e custo médio por material, sem o detalhe de impostos e outros custos por unidade vendida; a margem de contribuição completa só dá para calcular com pedidos reais do ciclo Order to Cash. O Notebook NovaBook 14 polegadas i5 (preço R$ 4.200,00, custo R$ 3.150,00) tem margem bruta de exatamente 25%, e como o limite é incluído na faixa alta, entra como Alta. Monitor LED 24 polegadas NovaView e Teclado Mecânico NovaKey têm margens de cerca de 29,6% e 40,6%, também Alta. Tabela 2: limite em 50 unidades (incluído na faixa Alto); parâmetro que escolhi para o exercício, já que o TAPI não fixa um volume de referência. Tabela 3: 2 níveis de margem x 2 níveis de volume = 4 combinações, todas cobertas em 4 linhas, sem faltar nem repetir nenhuma; por isso é completa e sem conflito.
 
 ---
-
-*Documento gerado a partir de Documentação_-_Atividade_Ponderada.docx e Planilha_com_Vocabulário__Regras_e_Tabelas_de_Decisão.xlsx.*
